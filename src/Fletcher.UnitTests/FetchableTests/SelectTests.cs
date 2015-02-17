@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using Fletcher.Dapper.QueryExtration;
+using Fletcher.Exceptions;
 using Fletcher.ExpressionExtraction;
 using Fletcher.Language;
 using Fletcher.UnitTests.TestHelpers;
@@ -10,24 +13,56 @@ namespace Fletcher.UnitTests.FetchableTests
     [TestFixture]
     public class SelectTests
     {
+        private IExpressionExtractor expressionExtractor;
+        private IQueryExtractor queryExtractor;
+
+        [TestFixtureSetUp]
+        public void FixtureSetup()
+        {
+            expressionExtractor = new ExpressionExtractor();
+            queryExtractor = new QueryExtractor();
+        }
+
         [Test]
         public void GivenFetchable_QueryShouldBe_SelectStarFrom()
         {
             var fetchable = Select.From<TestTable>();
-            var expressionTree = new ExpressionExtractor().Extract(fetchable);
-            var fetchableQuery = new QueryExtractor().Extract(expressionTree);
+            var fetchableQuery = GetQuery(fetchable);
 
             Assert.AreEqual("Select * From TestTable", fetchableQuery.Query);
         }
 
-        //[Test]
-        //public void GivenWhereFetchable_QueryShouldIncludeWhereClause()
-        //{
-        //    var fetchable = Select.From<TestTable>().Where(x => x.Id == 1);
+        [Test]
+        [ExpectedException(typeof(InvalidWhereClauseExpressionException))]
+        public void GivenUnUsableExpression_ThrowException()
+        {
+            var fetchable = Select.From<TestTable>().Where(x => true);
+            expressionExtractor.Extract(fetchable);
+        }
 
-        //    Assert.AreEqual("Select * From TestTable Where Id = @Id", fetchable.Query);
-        //    Assert.IsTrue(fetchable.HasWhereClause);
-        //}
+        [Test]
+        public void GivenWhereFetchable_QueryShouldIncludeWhereClause()
+        {
+            var fetchable = Select.From<TestTable>().Where(x => x.Id == 1);
+            var fetchableQuery = GetQuery(fetchable);
+
+            Assert.AreEqual("Select * From TestTable Where Id = @Id", fetchableQuery.Query);
+            this.AssertPropertyValue(fetchableQuery.WhereParameter, "Id", 1);
+        }
+
+        private void AssertPropertyValue(ExpandoObject obj, string propertyName, object expectedValue)
+        {
+            var dict = ((IDictionary<String, Object>)obj);
+            var hasKey = dict.ContainsKey(propertyName);
+            Assert.IsTrue(hasKey, "Does Not Contain Property " + propertyName);
+            Assert.AreEqual(expectedValue, dict[propertyName]);
+        }
+
+        private FetchableQuery GetQuery(Fetchable<TestTable, ReturnTypeDto> fetchable)
+        {
+            var expressionTree = expressionExtractor.Extract(fetchable);
+            return queryExtractor.Extract(expressionTree);
+        }
 
         //[Test]
         //public void GivenWhereFetchable_QueryShouldBIncludeWhereClauseObject()

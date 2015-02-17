@@ -25,7 +25,7 @@ namespace Fletcher.Dapper
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                var results = connection.Query<T>(fetchableQuery.Query);
+                var results = connection.Query<T>(fetchableQuery.Query, fetchableQuery.WhereParameter);
                 return results;
             }
         }

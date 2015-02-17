@@ -25,5 +25,14 @@ namespace Fletcher.IntegrationTests
 
             Assert.AreEqual(4, products.Count());
         } 
+
+        [Test]
+        public void GivenSimpleWhere_FetchSingleRow()
+        {
+            var fetchable = Select.From<ProductFetchable>().Where(x => x.ProductId == 2);
+            var products = this.fetcher.All<Product>(fetchable);
+
+            Assert.AreEqual(1, products.Count());
+        }
     }
 }

@@ -34,9 +34,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidWhereClauseExpressionException.cs" />
     <Compile Include="Exceptions\FetchableContainerEmptyException.cs" />
     <Compile Include="Exceptions\FetchableResultTypeNullException.cs" />
     <Compile Include="Exceptions\FletcherException.cs" />
+    <Compile Include="Exceptions\Guard.cs" />
+    <Compile Include="ExpressionExtraction\EndNode.cs" />
+    <Compile Include="ExpressionExtraction\ExpressionNode.cs" />
     <Compile Include="ExpressionExtraction\IExpressionExtractor.cs" />
     <Compile Include="Fetchable.cs" />
     <Compile Include="IFetcher.cs" />
