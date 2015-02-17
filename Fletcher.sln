@@ -3,6 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fletcher", "src\Fletcher\Fletcher.csproj", "{A93B8F29-F54F-4F5F-A0C5-D9DDAF0B7AAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fletcher.UnitTests", "src\Fletcher.UnitTests\Fletcher.UnitTests.csproj", "{E64F88BE-497D-4A4C-A3CB-5B7493C69206}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fletcher.IntegrationTests", "src\Fletcher.IntegrationTests\Fletcher.IntegrationTests.csproj", "{1B3A1415-7245-4ED7-84F6-6C47389DA572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fletcher.Dapper", "src\Fletcher.Dapper\Fletcher.Dapper.csproj", "{8D186F3C-2150-4160-BE76-BDDFCA2F1E75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6D9E5009-97CF-4118-8D26-F828AACC5BF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,8 +21,24 @@ Global
 		{A93B8F29-F54F-4F5F-A0C5-D9DDAF0B7AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A93B8F29-F54F-4F5F-A0C5-D9DDAF0B7AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A93B8F29-F54F-4F5F-A0C5-D9DDAF0B7AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E64F88BE-497D-4A4C-A3CB-5B7493C69206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E64F88BE-497D-4A4C-A3CB-5B7493C69206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E64F88BE-497D-4A4C-A3CB-5B7493C69206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E64F88BE-497D-4A4C-A3CB-5B7493C69206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B3A1415-7245-4ED7-84F6-6C47389DA572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B3A1415-7245-4ED7-84F6-6C47389DA572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B3A1415-7245-4ED7-84F6-6C47389DA572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B3A1415-7245-4ED7-84F6-6C47389DA572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D186F3C-2150-4160-BE76-BDDFCA2F1E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D186F3C-2150-4160-BE76-BDDFCA2F1E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D186F3C-2150-4160-BE76-BDDFCA2F1E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D186F3C-2150-4160-BE76-BDDFCA2F1E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B3A1415-7245-4ED7-84F6-6C47389DA572} = {6D9E5009-97CF-4118-8D26-F828AACC5BF9}
+		{E64F88BE-497D-4A4C-A3CB-5B7493C69206} = {6D9E5009-97CF-4118-8D26-F828AACC5BF9}
 	EndGlobalSection
 EndGlobal
