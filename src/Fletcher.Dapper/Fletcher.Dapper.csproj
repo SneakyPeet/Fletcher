@@ -41,10 +41,12 @@
   <ItemGroup>
     <Compile Include="DapperFetcher.cs" />
     <Compile Include="DapperFetcherFactory.cs" />
+    <Compile Include="Exceptions\NotValidSqlExpressionTypeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExtration\FetchableQuery.cs" />
     <Compile Include="QueryExtration\IQueryExtractor.cs" />
     <Compile Include="QueryExtration\QueryExtractor.cs" />
+    <Compile Include="QueryExtration\ToSqlStringExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fletcher\Fletcher.csproj">

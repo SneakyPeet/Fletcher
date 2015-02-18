@@ -41,12 +41,22 @@ namespace Fletcher.UnitTests.FetchableTests
         }
 
         [Test]
-        public void GivenWhereFetchable_QueryShouldIncludeWhereClause()
+        public void GivenWhereEqualsFetchable_QueryShouldIncludeWhereClause()
         {
             var fetchable = Select.From<TestTable>().Where(x => x.Id == 1);
             var fetchableQuery = GetQuery(fetchable);
 
             Assert.AreEqual("Select * From TestTable Where Id = @Id", fetchableQuery.Query);
+            this.AssertPropertyValue(fetchableQuery.WhereParameter, "Id", 1);
+        }
+
+        [Test]
+        public void GivenWhereNotEqualsFetchable_QueryShouldIncludeWhereClause()
+        {
+            var fetchable = Select.From<TestTable>().Where(x => x.Id != 1);
+            var fetchableQuery = GetQuery(fetchable);
+
+            Assert.AreEqual("Select * From TestTable Where Id <> @Id", fetchableQuery.Query);
             this.AssertPropertyValue(fetchableQuery.WhereParameter, "Id", 1);
         }
 

@@ -19,7 +19,9 @@ namespace Fletcher.Dapper.QueryExtration
                 {
                     query.Append(" Where ");
                     query.Append(endNode.Key);
-                    query.Append(" = @");
+                    query.Append(" ");
+                    query.Append(endNode.Comparitor.ToSqlString());
+                    query.Append(" @");
                     query.Append(endNode.Key);
                     param = new ExpandoObject();
                     ((IDictionary<string, object>)param)[endNode.Key] = endNode.Value;

@@ -7,11 +7,13 @@ namespace Fletcher.ExpressionExtraction
     {
         public string Key { get; private set; }
         public object Value { get; private set; }
+        public ExpressionType Comparitor { get; private set; }
 
         public EndNode(BinaryExpression expression)
         {
             this.GetKey(expression);
             this.GetValue(expression);
+            this.GetComparitor(expression);
         }
 
         private void GetValue(BinaryExpression expression)
@@ -26,6 +28,11 @@ namespace Fletcher.ExpressionExtraction
             var left = expression.Left as MemberExpression;
             Guard.AgainstNullExpression(left);
             this.Key = left.Member.Name;
+        }
+
+        private void GetComparitor(BinaryExpression expression)
+        {
+            this.Comparitor = expression.NodeType;
         }
 
         
