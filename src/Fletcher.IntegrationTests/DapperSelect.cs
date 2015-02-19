@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Fletcher.Dapper;
+using Fletcher.Dapper.ConnectionProviders;
 using Fletcher.IntegrationTests.TestHelpers;
 using Fletcher.Language;
 using NUnit.Framework;
@@ -14,7 +15,8 @@ namespace Fletcher.IntegrationTests
         [TestFixtureSetUp]
         public void SetupFixture()
         {
-            this.fetch = DapperFetcherFactory.Make("Data Source=.;Initial Catalog=SimpleDDD;Integrated Security=True");
+            const string connectionString = "Data Source=.;Initial Catalog=SimpleDDD;Integrated Security=True";
+            this.fetch = DapperFetcherFactory.Make(new SqlConnectionProvider(connectionString));
         }
 
         [Test]
@@ -27,13 +29,21 @@ namespace Fletcher.IntegrationTests
         } 
 
         [Test]
-
         public void GivenSimpleWhere_FetchSingleRow()
         {
             var fetchable = Select.From<ProductFetchable>().Where(x => x.ProductId == 2);
             var products = this.fetch.All<Product>(fetchable);
 
             Assert.AreEqual(1, products.Count());
+        }
+
+        [Test]
+        public void GivenGreaterThanWhere_FetchAllMatchingRows()
+        {
+            var fetchable = Select.From<ProductFetchable>().Where(x => x.ProductId >= 3);
+            var products = this.fetch.All<Product>(fetchable);
+
+            Assert.AreEqual(2, products.Count());
         }
     }
 }

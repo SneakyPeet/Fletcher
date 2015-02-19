@@ -37,8 +37,12 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionProviders\SqlCeConnectionProvider.cs" />
+    <Compile Include="ConnectionProviders\IConnectionProvider.cs" />
+    <Compile Include="ConnectionProviders\SqlConnectionProvider.cs" />
     <Compile Include="DapperFetcher.cs" />
     <Compile Include="DapperFetcherFactory.cs" />
     <Compile Include="Exceptions\NotValidSqlExpressionTypeException.cs" />
