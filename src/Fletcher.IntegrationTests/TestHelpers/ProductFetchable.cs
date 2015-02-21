@@ -3,7 +3,7 @@
     public class ProductFetchable : Fetchable<ProductFetchable, Product>
     {
         public ProductFetchable()
-            : base("Products")
+            : base(Constants.ProductsTableName)
         {
 
         }

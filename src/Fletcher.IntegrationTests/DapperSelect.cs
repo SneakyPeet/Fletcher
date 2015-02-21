@@ -8,15 +8,16 @@ using NUnit.Framework;
 namespace Fletcher.IntegrationTests
 {
     [TestFixture]
-    public class DapperSelect
+    public class DapperSelect : SqlCeTestDatabaseGenerator
     {
         private IFetcher fetch;
 
         [TestFixtureSetUp]
         public void SetupFixture()
         {
-            const string connectionString = "Data Source=.;Initial Catalog=SimpleDDD;Integrated Security=True";
-            this.fetch = DapperFetcherFactory.Make(new SqlConnectionProvider(connectionString));
+            SetupSqlCeTestDatabase();
+            CreateAndPopulateProjectsTable();
+            this.fetch = DapperFetcherFactory.Make(new SqlCeConnectionProvider(Constants.SqlCeConnectionString));
         }
 
         [Test]
@@ -32,9 +33,10 @@ namespace Fletcher.IntegrationTests
         public void GivenSimpleWhere_FetchSingleRow()
         {
             var fetchable = Select.From<ProductFetchable>().Where(x => x.ProductId == 2);
-            var products = this.fetch.All<Product>(fetchable);
+            var products = this.fetch.All<Product>(fetchable).ToList();
 
             Assert.AreEqual(1, products.Count());
+            Assert.AreEqual("iPod", products.First().Name);
         }
 
         [Test]
