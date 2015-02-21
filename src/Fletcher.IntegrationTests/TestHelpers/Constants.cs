@@ -2,8 +2,8 @@
 {
     public class Constants
     {
-        public const string SqlCeDatabaseFileName = "FletcherIntegration.sdf";
-        public const string SqlCeConnectionString = "Data Source = " + SqlCeDatabaseFileName;
+        public const string SqlCeDatabaseFileName = "FletcherIntegration.db";
+        public const string SqlCeConnectionString = "Data Source = " + SqlCeDatabaseFileName + ";Version=3;";
 
         public const string ProductsTableName = "[Products]";
     }

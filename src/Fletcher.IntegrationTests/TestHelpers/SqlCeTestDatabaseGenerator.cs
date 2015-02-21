@@ -1,4 +1,4 @@
-﻿using System.Data.SqlServerCe;
+﻿using Mono.Data.Sqlite;
 using System.IO;
 
 namespace Fletcher.IntegrationTests.TestHelpers
@@ -16,13 +16,12 @@ namespace Fletcher.IntegrationTests.TestHelpers
             {
                 File.Delete(Constants.SqlCeDatabaseFileName);
             }
-            var engine = new SqlCeEngine(Constants.SqlCeConnectionString);
-            engine.CreateDatabase();
+            SqliteConnection.CreateFile(Constants.SqlCeDatabaseFileName);
         }
 
         public void CreateAndPopulateProjectsTable()
         {
-            using (var connection = new SqlCeConnection(Constants.SqlCeConnectionString))
+            using (var connection = new SqliteConnection(Constants.SqlCeConnectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
@@ -35,7 +34,7 @@ namespace Fletcher.IntegrationTests.TestHelpers
             }
         }
 
-        private void ExecuteQuery(SqlCeCommand cmd, string query)
+        private void ExecuteQuery(SqliteCommand cmd, string query)
         {
             cmd.CommandText = query;
             cmd.ExecuteNonQuery();

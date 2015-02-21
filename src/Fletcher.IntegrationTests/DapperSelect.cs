@@ -17,7 +17,7 @@ namespace Fletcher.IntegrationTests
         {
             SetupSqlCeTestDatabase();
             CreateAndPopulateProjectsTable();
-            this.fetch = DapperFetcherFactory.Make(new SqlCeConnectionProvider(Constants.SqlCeConnectionString));
+            this.fetch = DapperFetcherFactory.Make(new SqliteConnectionProvider(Constants.SqlCeConnectionString));
         }
 
         [Test]
