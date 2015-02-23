@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Fletcher.IntegrationTests
 {
     [TestFixture]
-    public class DapperSelect : SqlCeTestDatabaseGenerator
+    public class DapperSelect : SqliteTestDatabaseGenerator
     {
         private IFetcher fetch;
 

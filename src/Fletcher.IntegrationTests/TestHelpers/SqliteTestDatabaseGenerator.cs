@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Fletcher.IntegrationTests.TestHelpers
 {
-    public abstract class SqlCeTestDatabaseGenerator
+    public abstract class SqliteTestDatabaseGenerator
     {
         public void SetupSqlCeTestDatabase()
         {
